@@ -39,7 +39,6 @@ from . import (
     examples,
     extent,
     filters,
-    fit,
     georecords,
     grid,
     indexkd,
