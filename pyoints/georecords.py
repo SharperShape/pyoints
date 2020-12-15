@@ -495,7 +495,7 @@ class LasRecords(GeoRecords):
     """
     STANDARD_FIELDS = [
         ('user_data', np.uint8),
-        ('intensity', np.uint8),
+        ('intensity', np.uint16),
         ('pt_src_id', np.uint16),
         ('gps_time', np.float64),
         ('scan_angle_rank', np.int8),
