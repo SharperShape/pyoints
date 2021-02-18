@@ -22,7 +22,7 @@ transformations.
 
 import pyproj
 import numpy as np
-from osgeo import osr
+import osgeo
 
 from . import (
     assertion,
@@ -92,7 +92,7 @@ class Proj:
 
     @property
     def wkt(self):
-        sr = osr.SpatialReference()
+        sr = osgeo.osr.SpatialReference()
         sr.ImportFromProj4(self.proj4)
         return sr.ExportToWkt()
 
@@ -102,7 +102,7 @@ class Proj:
 
     @property
     def osr(self):
-        srs = osr.SpatialReference()
+        srs = osgeo.osr.SpatialReference()
         srs.ImportFromProj4(self.proj4)
         return srs
 
@@ -133,7 +133,7 @@ class Proj:
         """
         if not isinstance(wkt, str):
             raise TypeError("'wkt' needs to be a string")
-        proj4 = osr.SpatialReference(wkt=wkt).ExportToProj4()
+        proj4 = osgeo.osr.SpatialReference(wkt=wkt).ExportToProj4()
         if proj4 == '':
             raise ValueError("WKT unknown")
         return Proj.from_proj4(proj4)
@@ -150,7 +150,7 @@ class Proj:
         """
         if not isinstance(epsg, int):
             raise TypeError("'epsg' needs to be an integer")
-        sr = osr.SpatialReference()
+        sr = osgeo.osr.SpatialReference()
         sr.ImportFromEPSG(epsg)
         proj4 = sr.ExportToProj4()
         if proj4 == '':
